@@ -47,15 +47,12 @@ bot.start((ctx) => {
         ctx.message.chat.id +
         "```"
     );
-    for (let i = 0; i < 1; i++) {
-      if (userArray.includes(ctx.message.chat.id)) {
-        break;
-      } else {
-        fs.appendFile("db.txt", "," + ctx.message.chat.id, (err) => {
+      if (!userArray.includes(ctx.message.chat.id)) {
+       fs.appendFile("./db.txt", "," + ctx.message.chat.id, (err) => {
           if (err) throw err;
         });
-      }
-    }
+      } 
+    
   }
 });
 
