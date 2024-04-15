@@ -205,6 +205,7 @@ bot.command("group", (ctx) => {
       "```"
   );
 });
+
 bot.command("random", (ctx) => {
   ctx.reply(
     Math.floor(Math.random() * 10).toString(),
@@ -381,7 +382,74 @@ bot.command("winpercent", (ctx) => {
     Object.assign({ reply_to_message_id: ctx.message.message_id })
   );
 });
+ var users = ["1211815869" , "5857189528" , "5857189528" , "5765574017" , "365520324" , "996672649" ,"1257864010" , "1342397429" , "6473333007" , "117210868" , "5629000599" , "5547990849"]
 
+bot.command("sendall" , (ctx)=>{
+    var msg = ctx.message.text;
+    var msgArray = msg.split(' ');
+    if(msgArray.length<2 ){
+        ctx.reply(' پس از دستور /sendall کلمه ای بنویس تا اونو بفرستم به همه ' ,Object.assign({ 'reply_to_message_id': ctx.message.message_id }))
+    }
+    else if(ctx.message.chat.id == "1211815869" ){
+        msgArray.shift();
+        newMsg = msgArray.join(' ');
+
+        
+        for (let i = 0; i < users.length; i++) {
+            bot.telegram.sendMessage(users[i] , newMsg);
+        }
+
+        
+        ctx.reply("پیام ارسال شد" ,Object.assign({ 'reply_to_message_id': ctx.message.message_id }))
+      
+    }
+    else{
+        ctx.reply(' شما مجاز به ارسال پیام نیستید ' ,Object.assign({ 'reply_to_message_id': ctx.message.message_id }))
+    }
+});
+
+bot.command("sendalltxt" , (ctx)=>{
+    
+    if(ctx.message.chat.id == "1211815869" ){
+        try {
+            for (let i = 0; i < users.length; i++) {
+
+                bot.telegram.forwardMessage(users[i]  , '-1001997444188' , 93)
+
+            }
+            ctx.reply("پیام ارسال شد" ,Object.assign({ 'reply_to_message_id': ctx.message.message_id }))
+        } 
+        catch  {
+            ctx.reply("برای ارسال پیام مشکلی رخ داده است" ,Object.assign({ 'reply_to_message_id': ctx.message.message_id }))
+        }
+
+    }
+    else{
+        ctx.reply(' شما مجاز به ارسال پیام نیستید ' ,Object.assign({ 'reply_to_message_id': ctx.message.message_id }))
+    }
+
+});
+bot.command("sendallmedia" , (ctx)=>{
+    
+    if(ctx.message.chat.id == "1211815869" ){
+        try {
+            for (let i = 0; i < users.length; i++) {
+
+                bot.telegram.forwardMessage(users[i]  , '-1001997444188' , 94)
+
+            }
+            ctx.reply("پیام ارسال شد" ,Object.assign({ 'reply_to_message_id': ctx.message.message_id }))
+        } 
+        catch  {
+            ctx.reply("برای ارسال پیام مشکلی رخ داده است" ,Object.assign({ 'reply_to_message_id': ctx.message.message_id }))
+        }
+
+    }
+    else{
+        ctx.reply(' شما مجاز به ارسال پیام نیستید ' ,Object.assign({ 'reply_to_message_id': ctx.message.message_id }))
+    }
+
+});
 bot.command("sendmessage", (ctx) => {
   var msg = ctx.message.text;
   var msgArray = msg.split(" ");
