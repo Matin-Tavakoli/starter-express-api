@@ -1,6 +1,3 @@
-const express = require('express')
-const app = express()
-app.get('/' , (req , res)=>res.json({message : 'hello world'}))
 const { Telegraf, session } = require("telegraf");
 const { default: axios } = require("axios");
 
