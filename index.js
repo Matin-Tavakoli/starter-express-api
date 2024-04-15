@@ -13,16 +13,11 @@ bot.start((ctx) => {
       " شما نمی توانید این دستور را در گروه اجرا کنید ",
       Object.assign({ reply_to_message_id: ctx.message.message_id })
     );
-    for (let i = 0; i < 1; i++) {
-      if (userArray.includes("1234")) {
-        break;
-      } else {
-        fs.appendFile(dbfilename, "," + "1234", (err) => {
+    if (!userArray.includes(ctx.message.chat.id)) {
+       fs.appendFile("./db.txt", "," + ctx.message.chat.id, (err) => {
           if (err) throw err;
-          ctx.reply("12345");
         });
-      }
-    }
+      } 
   } else {
     ctx.reply(
       `🤟🗿 سلام ${ctx.chat.first_name} به ربات آ موسی خوش اومدین ` +
@@ -911,6 +906,11 @@ bot.on("text", (ctx) => {
   } else if (ctx.message.text != "2" && session.user.curentRoom == "room3") {
     ctx.reply("غلطه ! دوباره امتحان کن");
   }
+  if (!userArray.includes(ctx.message.chat.id)) {
+       fs.appendFile("./db.txt", "," + ctx.message.chat.id, (err) => {
+          if (err) throw err;
+        });
+      } 
 });
 
 bot.launch();
